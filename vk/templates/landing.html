@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}">
+    <title>Hi there!</title>
+</head>
+<body>
+
+<div class="container shadow p-3 mb-5 bg-gradient-light rounded">
+
+   <div class="row d-flex mt-5 justify-content-center">
+       <div class="col-md-6">
+           <br>
+           <h2 class = "mb-5">Hi There!</h2>
+    {% if user.is_authenticated %}
+
+                <h4 class="text-success mb-5"> Welcome {{ user.first_name }} {{  user.last_name }}! </h4>
+           <h6 class="mb-2 text-warning"> Some of your VK friends are:</h6>
+                {% for friend in data %}
+                        <div>
+                           {{ friend.first_name }} {{ friend.last_name }}
+
+                        </div>
+                {% endfor %}
+            <a href="{% url 'logout' %}" class="mb-2 text-primary">Logout</a>
+     {% else %}
+                 <a href="/login/vk-oauth2" class="mb-2 text-primary">Login with VK</a>
+      {% endif %}
+
+
+       </h3>
+    </div>
+</div>
+    </div>
+</body>
+</html>
